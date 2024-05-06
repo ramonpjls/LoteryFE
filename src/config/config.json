@@ -1,19 +1,19 @@
 {
   "site": {
-    "title": "Nextplate",
-    "base_url": "https://nextplate.netlify.app",
+    "title": "ResultaDO",
+    "base_url": "https://ResultaDO.netlify.app",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_darkmode": "/images/logo-darkmode.png",
+    "logo": "/images/Lottery.svg",
+    "logo_darkmode": "/images/Lottery.svg",
     "logo_width": "150",
-    "logo_height": "27",
-    "logo_text": "Nextplate"
+    "logo_height": "55",
+    "logo_text": "ResultaDO"
   },
 
   "settings": {
-    "search": true,
+    "search": false,
     "sticky_header": true,
     "theme_switcher": true,
     "default_theme": "system",
@@ -24,13 +24,13 @@
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+    "copyright": ""
   },
 
   "navigation_button": {
-    "enable": true,
+    "enable": false,
     "label": "Get Started",
-    "link": "https://github.com/zeon-studio/nextplate"
+    "link": ""
   },
 
   "disqus": {

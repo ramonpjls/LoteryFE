@@ -1,8 +1,8 @@
 ---
 # Banner
 banner:
-  title: "The Ultimate Starter Template You Need To Start Your Next Project"
-  content: "Nextplate is a free starter template built with Next and TailwindCSS, providing everything you need to jumpstart your Next project and save valuable time."
+  title: "Numeros Ganadores y Resultados de la Lotería Nacional, Leidsa, Loteria Real y Loteka"
+  content: "Resultados y estadísticas de todos los sorteos de loterías de la República Dominicana: Leidsa, Lotería Nacional, Loteka, Loto Real y Americanas."
   image: "/images/banner.png"
   button:
     enable: true

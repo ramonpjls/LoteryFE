@@ -45,6 +45,17 @@ export type Author = {
   slug?: string;
 };
 
+export type Result = {
+  frontmatter: {
+    title: string;
+    image?: string;
+    description?: string;
+    meta_title?: string;
+  };
+  content?: string;
+  slug?: string;
+};
+
 export type Feature = {
   button: button;
   image: string;

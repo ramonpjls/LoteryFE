@@ -1,17 +1,17 @@
 import ImageFallback from "@/helpers/ImageFallback";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
+import LotterLogo from "../../public/images/Lottery.svg";
 import CallToAction from "@/partials/CallToAction";
 import SeoMeta from "@/partials/SeoMeta";
 import Testimonials from "@/partials/Testimonials";
 import { Button, Feature } from "@/types";
+import Image from "next/image";
 import Link from "next/link";
 import { FaCheck } from "react-icons/fa";
 
 const Home = () => {
   const homepage = getListPage("homepage/_index.md");
-  const testimonial = getListPage("sections/testimonial.md");
-  const callToAction = getListPage("sections/call-to-action.md");
   const { frontmatter } = homepage;
   const {
     banner,
@@ -21,13 +21,20 @@ const Home = () => {
     features: Feature[];
   } = frontmatter;
 
+  const lotteryResults = [
+    { name: "Loto", numbers: "05, 12, 23, 34, 55, 67" },
+    { name: "Quiniela Palé", numbers: "08, 15, 22" },
+    { name: "Loteka", numbers: "04, 18, 29, 36" },
+    { name: "Leidsa", numbers: "11, 28, 33, 41, 57, 60" },
+  ];
+
   return (
     <>
       <SeoMeta />
       <section className="section pt-14">
         <div className="container">
-          <div className="row justify-center">
-            <div className="lg:col-7 md:col-9 mb-8 text-center">
+          <div className="justify-center row">
+            <div className="mb-8 text-center lg:col-7 md:col-9">
               <h1
                 className="mb-4 text-h3 lg:text-h1"
                 dangerouslySetInnerHTML={markdownify(banner.title)}
@@ -36,91 +43,35 @@ const Home = () => {
                 className="mb-8"
                 dangerouslySetInnerHTML={markdownify(banner.content ?? "")}
               />
-              {banner.button!.enable && (
-                <Link
-                  className="btn btn-primary"
-                  href={banner.button!.link}
-                  target={
-                    banner.button!.link.startsWith("http") ? "_blank" : "_self"
-                  }
-                  rel="noopener"
-                >
-                  {banner.button!.label}
-                </Link>
-              )}
             </div>
-            {banner.image && (
-              <div className="col-12">
-                <ImageFallback
-                  src={banner.image}
-                  className="mx-auto"
-                  width="800"
-                  height="420"
-                  alt="banner image"
-                  priority
-                />
-              </div>
-            )}
           </div>
         </div>
       </section>
-
-      {features.map((feature, index: number) => (
-        <section
-          key={index}
-          className={`section-sm ${index % 2 === 0 && "bg-gradient"}`}
-        >
-          <div className="container">
-            <div className="row items-center justify-between">
-              <div
-                className={`mb:md-0 mb-6 md:col-5 ${
-                  index % 2 !== 0 && "md:order-2"
-                }`}
-              >
-                <ImageFallback
-                  src={feature.image}
-                  height={480}
-                  width={520}
-                  alt={feature.title}
-                />
-              </div>
-              <div
-                className={`md:col-7 lg:col-6 ${
-                  index % 2 !== 0 && "md:order-1"
-                }`}
-              >
-                <h2
-                  className="mb-4"
-                  dangerouslySetInnerHTML={markdownify(feature.title)}
-                />
-                <p
-                  className="mb-8 text-lg"
-                  dangerouslySetInnerHTML={markdownify(feature.content)}
-                />
-                <ul>
-                  {feature.bulletpoints.map((bullet: string) => (
-                    <li className="relative mb-4 pl-6" key={bullet}>
-                      <FaCheck className={"absolute left-0 top-1.5"} />
-                      <span dangerouslySetInnerHTML={markdownify(bullet)} />
-                    </li>
-                  ))}
-                </ul>
-                {feature.button.enable && (
-                  <Link
-                    className="btn btn-primary mt-5"
-                    href={feature.button.link}
+      <div className="grid justify-center max-w-6xl grid-cols-3 gap-4 p-4 m-4 mx-auto mt-12">
+        {lotteryResults.map((result, index) => (
+          <div
+            key={index}
+            className="py-10 rounded-lg bg-theme-light px-7 dark:bg-darkmode-theme-light"
+          >
+            <div className="flex justify-center mb-4">
+              <Image src={LotterLogo} alt="logo" />
+            </div>
+            <div>
+              <h2 className="font-bold">{result.name}</h2>
+              <div className="flex flex-wrap gap-2">
+                {result.numbers.split(", ").map((number, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-1 text-black bg-yellow-400 rounded-full"
                   >
-                    {feature.button.label}
-                  </Link>
-                )}
+                    {number}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
-        </section>
-      ))}
-
-      <Testimonials data={testimonial} />
-      <CallToAction data={callToAction} />
+        ))}
+      </div>
     </>
   );
 };
